@@ -8,6 +8,7 @@ def buildImage(){
                         sh 'docker build -t  mohmawoed/demo-app:jma2.0 .'
                         sh "echo $PASS | docker login -u $USER --password-stdin"
                         sh 'docker push mohmawoed/demo-app:jma2.0'
+                    }
 }
 
 def deployApp(){
