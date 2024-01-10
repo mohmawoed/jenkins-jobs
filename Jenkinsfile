@@ -1,49 +1,36 @@
 pipeline {
     agent any
-    stages {
-          stage('init') {
-              when {
-                  expression {
-                      BRANCH_NAME == 'master'
-                  }
-              }
-            steps {
-                echo "start testing --- "
+    stages{
+        stage("testing"){
+            when{
+                expression{
+                    BRANCH_NAME == 'master'
                 }
             }
-        }
-        stage('build jar') {
-            steps {
-                when {
-                  expression {
-                      BRANCH_NAME == 'master'
-                  }
-              }
-            steps {
-                echo "start building "
+            setps {
+                echo "testing the app ......."
             }
         }
-        stage('build image') {
-            when {
-                  expression {
-                      BRANCH_NAME == 'master'
-                  }
-              }
-            
-            steps {
-                  echo "start building "
+        stage("build"){
+            when{
+                expression{
+                    BRANCH_NAME == 'master'
                 }
             }
-        stage('deploy') {
-            when {
-                  expression {
-                      BRANCH_NAME == 'master'
-                  }
-              }
-            steps {
-               echo "start deploying ....." 
-                }
+            setps {
+                echo "building the app ......."
             }
         }
+        stage("deploy"){
+            when{
+                expression{
+                    BRANCH_NAME == 'master'
+                }
+            }
+            setps {
+                echo "deploy the app ......."
+            }
+        }
+        
     }
-}
+    }
