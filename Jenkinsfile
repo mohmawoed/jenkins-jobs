@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages{
-        stage("testing"){
+        stage('testing'){
             when{
                 expression{
                     BRANCH_NAME == 'master'
@@ -11,7 +11,7 @@ pipeline {
                 echo "testing the app ......."
             }
         }
-        stage("build"){
+        stage('build'){
             when{
                 expression{
                     BRANCH_NAME == 'master'
@@ -21,7 +21,7 @@ pipeline {
                 echo "building the app ......."
             }
         }
-        stage("deploy"){
+        stage('deploy'){
             when{
                 expression{
                     BRANCH_NAME == 'master'
