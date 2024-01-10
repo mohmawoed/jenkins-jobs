@@ -7,7 +7,7 @@ pipeline {
                     BRANCH_NAME == 'master'
                 }
             }
-            setps {
+            steps {
                 echo "testing the app ......."
             }
         }
@@ -17,7 +17,7 @@ pipeline {
                     BRANCH_NAME == 'master'
                 }
             }
-            setps {
+            steps {
                 echo "building the app ......."
             }
         }
@@ -27,7 +27,7 @@ pipeline {
                     BRANCH_NAME == 'master'
                 }
             }
-            setps {
+            steps {
                 echo "deploy the app ......."
             }
         }
