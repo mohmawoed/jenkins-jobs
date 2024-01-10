@@ -1,35 +1,47 @@
-def gv
 pipeline {
     agent any
-    tools {
-        maven 'maven-3.9'
-    }
     stages {
           stage('init') {
+              when {
+                  expression {
+                      BRANCH_NAME == 'master'
+                  }
+              }
             steps {
-                script {
-                    gv = load "script.groovy"
+                echo "start testing --- "
                 }
             }
         }
         stage('build jar') {
             steps {
-                script {
-                    gv.buildJar()
-                }
+                when {
+                  expression {
+                      BRANCH_NAME == 'master'
+                  }
+              }
+            steps {
+                echo "start building "
             }
         }
         stage('build image') {
+            when {
+                  expression {
+                      BRANCH_NAME == 'master'
+                  }
+              }
+            
             steps {
-                script {
-                    gv.buildImage()
-                    }
+                  echo "start building "
                 }
             }
         stage('deploy') {
+            when {
+                  expression {
+                      BRANCH_NAME == 'master'
+                  }
+              }
             steps {
-                script {
-                    gv.deployApp()
+               echo "start deploying ....." 
                 }
             }
         }
