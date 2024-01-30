@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
-@Library('jenkins-shared-library@master')
-def gv
+@Library('jenkins-shared-library@master')_
+
 pipeline {
     agent any
     tools {
@@ -15,7 +15,7 @@ pipeline {
                 }
             }
         }
-        stage("build and push image") {
+        stage("build  image") {
             steps {
                 script {
                     buildImage()
