@@ -1,36 +1,40 @@
+#!/usr/bin/env groovy
+
+@library('jenkins-shared-library@master')
+def gv
 pipeline {
     agent any
-    stages{
-        stage('testing'){
-            when{
-                expression{
-                    BRANCH_NAME == 'master'
-                }
-            }
-            steps {
-                echo "testing the app ......."
-            }
-        }
-        stage('build'){
-            when{
-                expression{
-                    BRANCH_NAME == 'master'
-                }
-            }
-            steps {
-                echo "building the app ......."
-            }
-        }
-        stage('deploy'){
-            when{
-                expression{
-                    BRANCH_NAME == 'master'
-                }
-            }
-            steps {
-                echo "deploy the app ......."
-            }
-        }
-        
+    tools {
+        maven 'Maven'
     }
+    stages {
+        stage("init") {
+            steps {
+                script {
+                    gv = load "script.groovy"
+                }
+            }
+        }
+        stage("build jar") {
+            steps {
+                script {
+                    buildJar()
+                }
+            }
+        }
+        stage("build and push image") {
+            steps {
+                script {
+                    buildImage()
+                }
+            }
+        }
+        stage("deploy") {
+            steps {
+                script {
+                    gv.deployApp()
+                }
+            }
+        }
     }
+}
