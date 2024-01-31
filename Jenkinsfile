@@ -19,6 +19,9 @@ pipeline {
             steps {
                 script {
                     buildImage 'mohmawoed/demo-app:jma2.0'
+                    dockerLogin()
+                    dockerPush 'mohmawoed/demo-app:jma2.0'
+
                 }
             }
         }
