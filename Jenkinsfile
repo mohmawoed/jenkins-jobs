@@ -18,7 +18,7 @@ pipeline {
         stage("build  image") {
             steps {
                 script {
-                    buildImage(mohmawoed/demo-app:jma2.0)
+                    buildImage 'mohmawoed/demo-app:jma2.0'
                 }
             }
         }
